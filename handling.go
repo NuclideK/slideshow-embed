@@ -125,7 +125,7 @@ func preProcessTikTokRequest(c *gin.Context) (SimplifiedData, bool) {
 	path := c.Request.URL.Path
 	switch path {
 	case PathCollage:
-		filename = "collage-" + videoId + ".png"
+		filename = "collage-" + videoId + ".jpeg"
 	case PathCollageSound:
 		filename = "video-" + videoId + ".mp4"
 	case PathSlide:
@@ -194,7 +194,7 @@ func HandleRequest(c *gin.Context) {
 		HandleError(c, err.Error())
 		return
 	}
-	handleDiscordEmbed(c, tiktokData, Domain+"collage-"+tiktokData.VideoID+".png")
+	handleDiscordEmbed(c, tiktokData, Domain+"collage-"+tiktokData.VideoID+".jpeg")
 	UpdateLocalStats()
 }
 

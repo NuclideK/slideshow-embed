@@ -63,7 +63,7 @@ func (t *SimplifiedData) MakeCollageWithAudio() (string, string, error) {
 		return "", "", err
 	}
 
-	out, err := exec.Command("ffmpeg", "-loop", "1", "-framerate", "1", "-i", "collages/collage-"+videoId+".png", "-i", audioFileName, "-map", "0", "-map", "1:a", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "stillimage", "-vf", "fps=1,format=yuv420p", "-c:a", "copy", "-shortest", "collages/video-"+videoId+".mp4").
+	out, err := exec.Command("ffmpeg", "-loop", "1", "-framerate", "1", "-i", "collages/collage-"+videoId+".jpeg", "-i", audioFileName, "-map", "0", "-map", "1:a", "-c:v", "libx264", "-preset", "ultrafast", "-tune", "stillimage", "-vf", "fps=1,format=yuv420p", "-c:a", "copy", "-shortest", "collages/video-"+videoId+".mp4").
 		Output()
 	if err != nil {
 		fmt.Println(err)
@@ -156,10 +156,10 @@ func (t *SimplifiedData) MakeVideoSlideshow() (string, string, error) {
 
 	sort.Slice(filteredImageFiles, func(i, j int) bool {
 		numI, _ := strconv.Atoi(
-			strings.TrimSuffix(strings.TrimPrefix(filteredImageFiles[i], "img"), ".png"),
+			strings.TrimSuffix(strings.TrimPrefix(filteredImageFiles[i], "img"), ".jpeg"),
 		)
 		numJ, _ := strconv.Atoi(
-			strings.TrimSuffix(strings.TrimPrefix(filteredImageFiles[j], "img"), ".png"),
+			strings.TrimSuffix(strings.TrimPrefix(filteredImageFiles[j], "img"), ".jpeg"),
 		)
 		return numI < numJ
 	})
